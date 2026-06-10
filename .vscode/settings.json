@@ -1,8 +1,0 @@
-{
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono, Noto Sans Mono",
-  "terminal.integrated.gpuAcceleration": "off",
-  "terminal.integrated.customGlyphs": false,
-  "terminal.integrated.lineHeight": 1.15,
-  "terminal.integrated.letterSpacing": 0,
-  "terminal.integrated.defaultProfile.linux": "bash"
-}
