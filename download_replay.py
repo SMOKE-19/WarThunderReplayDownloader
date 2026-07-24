@@ -1,6 +1,7 @@
+import os
+import shutil
 import sys
 from pathlib import Path
-import shutil
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 SRC_PATH = PROJECT_ROOT / "src"
@@ -13,8 +14,10 @@ USER_ID = "0000000"
 SESSION_IDS = [
     "0000000000000000",
 ]
-DOWNLOAD_ROOT = Path("/home/smoke/Desktop/warthunder_replays/Downloads")
-LOGIN_COOKIE = ""
+DOWNLOAD_ROOT = Path(
+    os.environ.get("WARTHUNDER_REPLAY_DOWNLOAD_ROOT", PROJECT_ROOT / "Downloads")
+).expanduser()
+LOGIN_COOKIE = os.environ.get("WARTHUNDER_LOGIN_COOKIE", "")
 USE_EDGE_COOKIES = True
 DOWNLOAD_RETRIES = 5
 RETRY_DELAY_SECONDS = 2.0

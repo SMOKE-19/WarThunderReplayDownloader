@@ -1,9 +1,20 @@
 .vscode/
 .venv/
+.venv*/
+venv/
+.env
+.env.*
+!.env.example
 __pycache__/
 *.py[cod]
 
 Downloads/
 downloads/
+user_id.txt
+Cookies
+Cookies-journal
+*.cookie
+*.cookies
 
 .DS_Store
+Thumbs.db

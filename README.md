@@ -26,7 +26,8 @@ This version is no longer based on manual URL editing. It works like the replay 
 - Python `3.10+`
 - Microsoft Edge already logged in to `warthunder.com`
 
-If Edge cookie auto-login does not work, you can also paste a cookie string manually into the script.
+If Edge cookie auto-login does not work, set the `WARTHUNDER_LOGIN_COOKIE`
+environment variable for the downloader process.
 
 ## Install
 
@@ -64,11 +65,17 @@ Important:
 Useful settings in the same file:
 
 - `USE_EDGE_COOKIES = True`
-- `LOGIN_COOKIE = ""`
 - `MAX_WORKERS = 3`
 - `DOWNLOAD_RETRIES = 5`
 - `RETRY_DELAY_SECONDS = 2.0`
 - `RESET_SESSION_DIR_ON_START = True`
+
+Optional environment variables:
+
+- `WARTHUNDER_REPLAY_DOWNLOAD_ROOT`: output root (defaults to the project's
+  `Downloads` directory)
+- `WARTHUNDER_LOGIN_COOKIE`: fallback login cookie used only by the downloader
+  process
 
 ## Run
 
@@ -82,14 +89,14 @@ python download_replay.py
 Replay files are saved under:
 
 ```text
-/home/smoke/Desktop/warthunder_replays/Downloads/<session_id>/
+<download_root>/<session_id>/
 ```
 
 Example file layout:
 
 ```text
 Downloads/
-  6bdb86d001fd0ba/
+  0123456789abcdef/
     0000.wrpl
     0001.wrpl
     0002.wrpl
@@ -101,14 +108,14 @@ Downloads/
 During download you will see messages like:
 
 ```text
-[6bdb86d001fd0ba] Starting download of 34 part(s) with 3 worker(s).
-[6bdb86d001fd0ba] Progress 12/34 ( 35.3%) - 0011.wrpl
+[0123456789abcdef] Starting download of 34 part(s) with 3 worker(s).
+[0123456789abcdef] Progress 12/34 ( 35.3%) - 0011.wrpl
 ```
 
 If a file already exists and folder reset is disabled:
 
 ```text
-[6bdb86d001fd0ba] Skip existing 0011.wrpl
+[0123456789abcdef] Skip existing 0011.wrpl
 ```
 
 ## Login Handling
@@ -121,7 +128,7 @@ Default behavior:
 Fallback behavior:
 
 - Set `USE_EDGE_COOKIES = False`
-- Paste a valid cookie string into `LOGIN_COOKIE`
+- Set `WARTHUNDER_LOGIN_COOKIE` in the downloader process environment
 
 ## Notes
 

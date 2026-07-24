@@ -78,14 +78,16 @@ def build_authenticated_session(config: ReplayDownloadConfig) -> requests.Sessio
         session.cookies.update(browser_cookie3.edge(domain_name="warthunder.com"))
     else:
         raise RuntimeError(
-            "No login method configured. Enable Edge cookies or set LOGIN_COOKIE."
+            "No login method configured. Enable Edge cookies or set "
+            "WARTHUNDER_LOGIN_COOKIE."
         )
 
     response = session.get(config.replay_page_url, timeout=config.timeout_seconds)
     if "login.gaijin.net" in response.url or "Single Sign On" in response.text:
         raise RuntimeError(
             "Replay page redirected to the Gaijin login page. "
-            "Edge cookie auto-login did not work, so set LOGIN_COOKIE manually."
+            "Edge cookie auto-login did not work, so set "
+            "WARTHUNDER_LOGIN_COOKIE in the process environment."
         )
 
     return session
